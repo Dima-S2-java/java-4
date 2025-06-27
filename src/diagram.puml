@@ -1,0 +1,29 @@
+@startuml
+class Main.Instrument {
+  +Instrument(name)
+  +play()
+}
+
+class "Main.Instrument::Part" {
+  +info()
+}
+
+class "Main.Instrument::Factory" {
+  +create(name) : Instrument
+}
+
+class Main.Musician {
+  +play()
+  +getName()
+}
+
+class Main.Orchestra {
+  +addMusician()
+  +perform()
+}
+
+Main.Instrument *-- "1" Main.Instrument::Part : composition
+Main.Instrument ..> Main.Instrument::Factory : static nested
+Main.Musician --> Main.Instrument : association
+Main.Orchestra o-- "0..*" Main.Musician : aggregation
+@enduml
